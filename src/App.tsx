@@ -1,10 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import GlobalStyle from './styles/global';
+import Routes from './routes';
+
+import AppProvider from './hooks';
 
 const App: React.FC = () => (
-  <>
-    <h1>ReactJS Typescript Template</h1>
-    <p>Editorconfig, ESlint and Prettier Already configured!</p>
-  </>
+  <Router>
+    <AppProvider>
+      <Routes />
+    </AppProvider>
+    <GlobalStyle />
+  </Router>
 );
 
 export default App;
