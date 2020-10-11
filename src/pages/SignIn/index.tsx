@@ -43,7 +43,7 @@ const SignIn: React.FC = () => {
         await schema.validate(data, { abortEarly: false });
         await signIn({ email: data.email, password: data.password });
 
-        history.push('/dashboard');
+        history.push('/home');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
