@@ -5,7 +5,14 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import { isToday, format, parseISO, isAfter, formatISO } from 'date-fns';
+import {
+  isToday,
+  format,
+  parseISO,
+  isAfter,
+  formatISO,
+  formatISO9075,
+} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -133,17 +140,36 @@ const Dashboard: React.FC = () => {
         const month = selectedDate.getMonth();
         const day = selectedDate.getDate();
 
-        const date = formatISO(
-          new Date(year, month, day, Number(hour), Number(minute)),
-        );
+        const date = new Date(
+          year,
+          month,
+          day,
+          Number(hour),
+          Number(minute),
+        ).toISOString();
         console.log(date);
+        console.log(
+          formatISO9075(
+            new Date(year, month, day, Number(hour), Number(minute)),
+          ),
+        );
 
-        // await api.post('/appointments', {
-        //   name: data.name,
-        //   phone: data.phone,
-        //   provider_id: providerId,
-        //   date,
-        // });
+        console.log(
+          new Date(
+            year,
+            month,
+            day,
+            Number(hour),
+            Number(minute),
+          ).toISOString(),
+        );
+
+        await api.post('/appointments', {
+          name: data.name,
+          phone: data.phone,
+          provider_id: providerId,
+          date,
+        });
 
         addToast({
           type: 'success',
@@ -170,7 +196,7 @@ const Dashboard: React.FC = () => {
         history.goBack();
       }
     },
-    [addToast, history, selectedDate, selectedHour],
+    [addToast, history, providerId, selectedDate, selectedHour],
   );
 
   useEffect(() => {
