@@ -5,14 +5,7 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import {
-  isToday,
-  format,
-  parseISO,
-  isAfter,
-  formatISO,
-  formatISO9075,
-} from 'date-fns';
+import { isToday, format, parseISO, isAfter, formatISO9075 } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
