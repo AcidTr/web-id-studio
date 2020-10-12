@@ -170,7 +170,7 @@ const Dashboard: React.FC = () => {
         history.goBack();
       }
     },
-    [addToast, history, providerId, selectedDate, selectedHour],
+    [addToast, history, selectedDate, selectedHour],
   );
 
   useEffect(() => {
