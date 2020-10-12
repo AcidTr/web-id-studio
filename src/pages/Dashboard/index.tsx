@@ -5,7 +5,7 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import { isToday, format, parseISO, isAfter, formatISO } from 'date-fns';
+import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -133,9 +133,13 @@ const Dashboard: React.FC = () => {
         const month = selectedDate.getMonth();
         const day = selectedDate.getDate();
 
-        const date = formatISO(
-          new Date(year, month, day, Number(hour), Number(minute)),
-        );
+        const date = new Date(
+          year,
+          month,
+          day,
+          Number(hour),
+          Number(minute),
+        ).toISOString();
 
         await api.post('/appointments', {
           name: data.name,
